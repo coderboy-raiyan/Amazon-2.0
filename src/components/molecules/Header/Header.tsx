@@ -1,4 +1,4 @@
-import { SearchIcon } from "@heroicons/react/outline";
+import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 
 function Header() {
@@ -26,15 +26,25 @@ function Header() {
                 </div>
 
                 {/* Right  */}
-                <div className="text-white">
-                    <div>
+                <div className="mx-6 flex items-center space-x-6 text-xs text-white">
+                    <div className="link">
                         <p>Hello, Raiyan</p>
-                        <p>Account & List</p>
+                        <p className="font-extrabold md:text-sm">Account & List</p>
                     </div>
 
-                    <div>
+                    <div className="link">
                         <p>Returns</p>
-                        <p>& Orders</p>
+                        <p className="font-extrabold md:text-sm">& Orders</p>
+                    </div>
+
+                    <div className="link relative flex items-center">
+                        <span className="absolute top-0 right-0 h-4 w-4 rounded-full bg-yellow-100 text-center font-bold text-black md:right-10">
+                            0
+                        </span>
+                        <ShoppingCartIcon className="h-10" />
+                        <p className="mt-2 hidden font-extrabold sm:inline-flex md:text-sm">
+                            Basket
+                        </p>
                     </div>
                 </div>
             </div>
