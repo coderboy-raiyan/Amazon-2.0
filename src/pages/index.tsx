@@ -9,6 +9,8 @@ function Home() {
             </Head>
 
             <Header />
+
+            <main>{/* Banner */}</main>
         </div>
     );
 }
