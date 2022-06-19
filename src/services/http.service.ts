@@ -3,7 +3,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 const axiosConfig = {
-    baseURL: "https://some-domain.com/api/",
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     timeout: 6000,
 };
 
