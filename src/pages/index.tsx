@@ -25,7 +25,7 @@ function Home({ products }: { products: any }) {
 
 export default Home;
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async () => {
     const products = await ProductHttpReq.getProducts();
 
     return {

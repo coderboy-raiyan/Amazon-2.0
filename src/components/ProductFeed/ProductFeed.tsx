@@ -1,6 +1,13 @@
+import { Product } from "components/organisms";
+
 function ProductFeed({ products }: { products: any }) {
-    console.log(products);
-    return <div>ProductFeed</div>;
+    return (
+        <div>
+            {products.map((product: any) => (
+                <Product key={product.id} product={product} />
+            ))}
+        </div>
+    );
 }
 
 export default ProductFeed;
