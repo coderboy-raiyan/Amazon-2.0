@@ -5,5 +5,9 @@ module.exports = {
     theme: {
         extend: {},
     },
-    plugins: [require("@tailwindcss/forms"), require("prettier-plugin-tailwindcss")],
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("prettier-plugin-tailwindcss"),
+        require("@tailwindcss/line-clamp"),
+    ],
 };
