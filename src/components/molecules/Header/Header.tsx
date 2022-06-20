@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-unescaped-entities */
 import { MenuIcon, SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 function Header() {
@@ -33,8 +33,8 @@ function Header() {
 
                 {/* Right  */}
                 <div className="mx-6 flex items-center space-x-6 text-xs text-white">
-                    <div onClick={() => signIn()} className="link">
-                        <p>Hello, {session!.user!.name}</p>
+                    <div onClick={() => (session ? signOut() : signIn())} className="link">
+                        <p>{session ? `Hello, ${session!.user!.name}` : "Sign In"}</p>
                         <p className="font-extrabold md:text-sm">Account & List</p>
                     </div>
 
