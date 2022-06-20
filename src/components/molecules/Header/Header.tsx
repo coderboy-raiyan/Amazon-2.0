@@ -1,8 +1,13 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-unescaped-entities */
 import { MenuIcon, SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 
 function Header() {
+    const { data: session } = useSession();
+    console.log(session);
     return (
         <header>
             {/* top nav */}
@@ -28,7 +33,7 @@ function Header() {
 
                 {/* Right  */}
                 <div className="mx-6 flex items-center space-x-6 text-xs text-white">
-                    <div className="link">
+                    <div onClick={() => signIn()} className="link">
                         <p>Hello, Raiyan</p>
                         <p className="font-extrabold md:text-sm">Account & List</p>
                     </div>
