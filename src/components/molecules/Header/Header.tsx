@@ -34,7 +34,7 @@ function Header() {
                 {/* Right  */}
                 <div className="mx-6 flex items-center space-x-6 text-xs text-white">
                     <div onClick={() => signIn()} className="link">
-                        <p>Hello, Raiyan</p>
+                        <p>Hello, {session!.user!.name}</p>
                         <p className="font-extrabold md:text-sm">Account & List</p>
                     </div>
 
