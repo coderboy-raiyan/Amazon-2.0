@@ -2,7 +2,7 @@ import { getProviders, signIn } from "next-auth/react";
 
 function SignIn({ providers }: { providers: any }) {
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="mx-4 flex flex-col items-center justify-center">
             <div className="my-5 flex flex-grow items-center sm:flex-grow-0">
                 <img
                     className="mx-auto w-28"
@@ -10,8 +10,8 @@ function SignIn({ providers }: { providers: any }) {
                     alt=""
                 />
             </div>
-            <div className="w-[300px] space-y-6 rounded border border-gray-200 p-6 shadow">
-                <p className="text-2xl ">Sign In</p>
+            <div className="w-full space-y-6 rounded border border-gray-200 p-6 sm:w-[400px]">
+                <p className="text-center text-2xl font-semibold">Sign In</p>
                 {Object.values(providers).map((provider: any) => (
                     <div key={provider.name}>
                         <button
