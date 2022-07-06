@@ -8,7 +8,7 @@ import Currency from "react-currency-formatter";
 
 function Product({ product }: { product: any }) {
     const [hasPrime, setHasPrime] = useState(false);
-    const [ratingsArray, setRatingsArray] = useState<any[]>([]);
+    const [ratingsArray, setRatingsArray] = useState<number[]>([]);
     useEffect(() => {
         const MAX_RATING = 5;
         const MIN_RATING = 1;
