@@ -8,7 +8,7 @@ function Checkout() {
 
             <main className="mx-auto max-w-screen-2xl lg:flex">
                 {/* left side */}
-                <div>
+                <div className="m-5 flex-grow shadow-sm">
                     <Image
                         src="https://links.papareact.com/ikj"
                         objectFit="contain"
@@ -17,7 +17,7 @@ function Checkout() {
                     />
 
                     <div>
-                        <h1>Your Shopping Basket</h1>
+                        <h1 className="">Your Shopping Basket</h1>
                     </div>
                 </div>
 

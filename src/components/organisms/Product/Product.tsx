@@ -3,18 +3,21 @@
 /* eslint-disable react/no-array-index-key */
 import { StarIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Currency from "react-currency-formatter";
 
-const MAX_RATING = 5;
-const MIN_RATING = 1;
-
 function Product({ product }: { product: any }) {
-    const [ratings] = useState(
-        Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-    );
+    const [hasPrime, setHasPrime] = useState(false);
+    const [ratingsArray, setRatingsArray] = useState<any[]>([]);
+    useEffect(() => {
+        const MAX_RATING = 5;
+        const MIN_RATING = 1;
+        const randomRatings =
+            Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING;
+        setRatingsArray(Array(randomRatings).fill(""));
+        setHasPrime(Math.random() < 0.5);
+    }, []);
 
-    const [hasPrime] = useState(Math.random() < 0.5);
     const [toggle, setToggle] = useState(false);
 
     return (
@@ -26,11 +29,9 @@ function Product({ product }: { product: any }) {
             <h4 className="my-3">{product.title}</h4>
 
             <div className="flex">
-                {Array(ratings)
-                    .fill("")
-                    .map((_: any, i: any) => (
-                        <StarIcon key={i} className="h-5 text-yellow-500" />
-                    ))}
+                {ratingsArray.map((_: any, i: any) => (
+                    <StarIcon key={i} className="h-5 text-yellow-500" />
+                ))}
             </div>
 
             <div className="flex items-end justify-center">
