@@ -1,21 +1,3 @@
 # Amazon-Clone
 
-## .env.locals
-
-```
-NEXT_PUBLIC_API_KEY=
-NEXT_PUBLIC_AUTH_DOMAIN=
-NEXT_PUBLIC_PROJECT_ID=
-NEXT_PUBLIC_STORAGE_BUCKET=
-NEXT_PUBLIC_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_APP_ID=
-
-NEXT_PUBLIC_BASE_URL=
-
-===================== Next_Auth_Credentials =======================================
-
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=
-NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=
-NEXT_PUBLIC_SECRET=
-NEXTAUTH_URL=
-```
+[All Env that you need](./.env.example)
