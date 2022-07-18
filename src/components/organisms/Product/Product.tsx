@@ -5,10 +5,16 @@ import { StarIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Currency from "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "redux/Reducers/basketSlice";
 
-function Product({ product }: { product: any }) {
+// eslint-disable-next-line no-undef
+function Product({ product }: { product: IProduct }) {
     const [hasPrime, setHasPrime] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const [ratingsArray, setRatingsArray] = useState<number[]>([]);
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const MAX_RATING = 5;
         const MIN_RATING = 1;
@@ -18,7 +24,9 @@ function Product({ product }: { product: any }) {
         setHasPrime(Math.random() < 0.5);
     }, []);
 
-    const [toggle, setToggle] = useState(false);
+    const handelAddToBasket = () => {
+        dispatch(addToBasket(product));
+    };
 
     return (
         <div className="relative z-30 m-5 flex flex-col bg-white p-10">
@@ -58,7 +66,7 @@ function Product({ product }: { product: any }) {
                 </div>
             )}
 
-            <button type="button" className="button mt-auto">
+            <button onClick={handelAddToBasket} type="button" className="button mt-auto">
                 Add to Busket
             </button>
         </div>

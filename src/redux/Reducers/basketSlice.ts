@@ -1,6 +1,13 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: { basket: any[] } = {
+interface IBasketSlice {
+    // eslint-disable-next-line no-undef
+    basket: IProduct[];
+}
+
+const initialState: IBasketSlice = {
     basket: [],
 };
 
@@ -8,8 +15,39 @@ export const basketSlice = createSlice({
     name: "basket",
     initialState,
     reducers: {
-        addToBasket(state: any, action: any) {},
-        removeFromBasket(state: any, action: any) {},
+        // eslint-disable-next-line no-undef
+        addToBasket(state: IBasketSlice, action: IAddToBasket) {
+            const isAlreadyInBasket = state.basket.find(
+                (product) => product.id === action.payload.id
+            );
+
+            if (isAlreadyInBasket) {
+                state.basket = state.basket.map((item) => {
+                    if (item.id === action.payload.id) {
+                        return { ...item, quantity: item.quantity! + 1 };
+                    }
+                    return item;
+                });
+            } else {
+                action.payload.quantity = 1;
+                state.basket = [...state.basket, action.payload];
+            }
+        },
+        // eslint-disable-next-line no-undef
+        removeFromBasket(state: IBasketSlice, action: IRemoveFromBasket) {
+            const isAlreadyInBasket = state.basket.find((product) => product.id === action.payload);
+
+            if (isAlreadyInBasket?.quantity === 1) {
+                state.basket = state.basket.filter((item) => item.id !== action.payload);
+            } else {
+                state.basket = state.basket.map((item) => {
+                    if (item.id === action.payload) {
+                        return { ...item, quantity: item.quantity! - 1 };
+                    }
+                    return item;
+                });
+            }
+        },
     },
 });
 

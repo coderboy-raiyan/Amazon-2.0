@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-unescaped-entities */
@@ -5,12 +6,22 @@ import { MenuIcon, SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function Header() {
     const { data: session } = useSession();
     const router = useRouter();
+    const { basket } = useSelector((state: any) => state.basket);
+    const [totalItems, setTotalItems] = useState(0);
 
-    console.log(session);
+    useEffect(() => {
+        setTotalItems(
+            // eslint-disable-next-line no-param-reassign, no-return-assign
+            basket.reduce((acc: number, curr: IProduct) => (acc += curr.quantity!), 0)
+        );
+    }, [basket]);
+
     return (
         <header>
             {/* top nav */}
@@ -51,8 +62,8 @@ function Header() {
                         onClick={() => router.push("/checkout")}
                         className="link relative flex items-center"
                     >
-                        <span className="absolute top-0 right-0 h-4 w-4 rounded-full bg-yellow-100 text-center font-bold text-black md:right-10">
-                            0
+                        <span className="absolute top-0 right-0 h-4 w-6 rounded-full bg-yellow-100 text-center font-bold text-black md:right-10">
+                            {totalItems}
                         </span>
                         <ShoppingCartIcon className="h-10" />
                         <p className="mt-2 hidden font-extrabold sm:inline-flex md:text-sm">
