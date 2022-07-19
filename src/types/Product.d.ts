@@ -8,6 +8,8 @@ interface IProduct {
     rating: { rate: number; count: number };
     title: string;
     quantity?: number;
+    hasPrime?: boolean;
+    ratings?: number[];
 }
 
 interface IAddToBasket {

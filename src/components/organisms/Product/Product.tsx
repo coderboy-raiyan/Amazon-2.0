@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
@@ -25,6 +26,8 @@ function Product({ product }: { product: IProduct }) {
     }, []);
 
     const handelAddToBasket = () => {
+        product.hasPrime = hasPrime;
+        product.ratings = ratingsArray;
         dispatch(addToBasket(product));
     };
 

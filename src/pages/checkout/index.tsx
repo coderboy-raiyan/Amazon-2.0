@@ -1,7 +1,11 @@
 import { Header } from "components/molecules";
+import { CheckoutProduct } from "components/organisms";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 function Checkout() {
+    const { basket } = useSelector((state: any) => state.basket);
+
     return (
         <div className="bg-gray-100">
             <Header />
@@ -17,7 +21,16 @@ function Checkout() {
                     />
 
                     <div className="flex flex-col space-y-10 bg-white p-5">
-                        <h1 className="border-5 pb-4 text-3xl">Your Shopping Basket</h1>
+                        <h1 className="border-5 pb-4 text-3xl">
+                            {basket.length ? "Shopping Basket" : "Empty Shopping Basket"}
+                        </h1>
+
+                        {
+                            // eslint-disable-next-line no-undef
+                            basket.map((items: IProduct) => (
+                                <CheckoutProduct key={items.id} items={items} />
+                            ))
+                        }
                     </div>
                 </div>
 
