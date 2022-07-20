@@ -37,7 +37,7 @@ export const basketSlice = createSlice({
         removeFromBasket(state: IBasketSlice, action: IRemoveFromBasket) {
             const isAlreadyInBasket = state.basket.find((product) => product.id === action.payload);
 
-            if (isAlreadyInBasket?.quantity === 1) {
+            if (isAlreadyInBasket?.quantity === 0 || isAlreadyInBasket?.quantity === 1) {
                 state.basket = state.basket.filter((item) => item.id !== action.payload);
             } else {
                 state.basket = state.basket.map((item) => {

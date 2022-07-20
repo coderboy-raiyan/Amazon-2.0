@@ -12,8 +12,11 @@ function CheckoutProduct({ items }: { items: IProduct }) {
 
     const handelQty = (e: any) => {
         // eslint-disable-next-line no-undef
-        const updatedProductWithQty: IProduct = { ...items, quantity: e.target.value };
+        const updatedProductWithQty: IProduct = { ...items, quantity: Number(e.target.value) };
         dispatch(changeQty(updatedProductWithQty));
+        if (Number(e.target.value) === 0) {
+            dispatch(removeFromBasket(items.id));
+        }
     };
 
     return (
@@ -43,7 +46,7 @@ function CheckoutProduct({ items }: { items: IProduct }) {
                 )}
 
                 <div className="flex items-center space-x-5">
-                    {items.quantity! > 1 && (
+                    {items.quantity! > 0 && (
                         <div className="flex h-8 w-28 items-center justify-center space-x-3 rounded-xl border-gray-300 bg-gray-100  text-sm font-semibold shadow">
                             <label>Qty : </label>
                             <select
