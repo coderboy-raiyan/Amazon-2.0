@@ -48,8 +48,18 @@ export const basketSlice = createSlice({
                 });
             }
         },
+
+        // eslint-disable-next-line no-undef
+        changeQty(state: IBasketSlice, action: { payload: IProduct }) {
+            state.basket = state.basket.map((product) => {
+                if (product.id === action.payload.id) {
+                    return { ...product, quantity: action.payload.quantity };
+                }
+                return product;
+            });
+        },
     },
 });
 
-export const { addToBasket, removeFromBasket } = basketSlice.actions;
+export const { addToBasket, removeFromBasket, changeQty } = basketSlice.actions;
 export default basketSlice.reducer;

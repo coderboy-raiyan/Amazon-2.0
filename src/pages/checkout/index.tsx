@@ -20,10 +20,13 @@ function Checkout() {
                         height={250}
                     />
 
-                    <div className="flex flex-col space-y-10 bg-white p-5">
-                        <h1 className="border-5 pb-4 text-3xl">
-                            {basket.length ? "Shopping Basket" : "Empty Shopping Basket"}
-                        </h1>
+                    <div className="flex flex-col space-y-10 bg-white p-8">
+                        <div className="flex justify-between border-b">
+                            <h1 className="pb-4 text-3xl">
+                                {basket.length ? "Shopping Cart" : "Empty Shopping Cart"}
+                            </h1>
+                            <h1>Price</h1>
+                        </div>
 
                         {
                             // eslint-disable-next-line no-undef

@@ -26,9 +26,8 @@ function Product({ product }: { product: IProduct }) {
     }, []);
 
     const handelAddToBasket = () => {
-        product.hasPrime = hasPrime;
-        product.ratings = ratingsArray;
-        dispatch(addToBasket(product));
+        const customProduct = { ...product, hasPrime, ratings: ratingsArray };
+        dispatch(addToBasket(customProduct));
     };
 
     return (
