@@ -62,4 +62,10 @@ export const basketSlice = createSlice({
 });
 
 export const { addToBasket, removeFromBasket, changeQty } = basketSlice.actions;
+export const selectTotal = (state: any) =>
+    // eslint-disable-next-line no-undef
+    state.basket.basket.reduce((acc: number, product: IProduct) => {
+        acc += product.quantity! * product.price;
+        return acc;
+    }, 0);
 export default basketSlice.reducer;
