@@ -1,10 +1,13 @@
 import { Header } from "components/molecules";
 import { CheckoutProduct } from "components/organisms";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Currency from "react-currency-formatter";
 import { useSelector } from "react-redux";
 
 function Checkout() {
     const { basket } = useSelector((state: any) => state.basket);
+    const { data: session } = useSession();
 
     return (
         <div className="bg-gray-100">
@@ -12,7 +15,7 @@ function Checkout() {
 
             <main className="mx-auto max-w-screen-2xl lg:flex">
                 {/* left side */}
-                <div className="m-5 flex-grow shadow-sm">
+                <div className="m-2 flex-grow shadow-sm">
                     <Image
                         src="https://links.papareact.com/ikj"
                         objectFit="contain"
@@ -38,6 +41,30 @@ function Checkout() {
                 </div>
 
                 {/* right side */}
+
+                <div className="flex flex-col bg-white p-5 shadow-md lg:w-[40%]">
+                    {basket.length > 0 && (
+                        <>
+                            <h2>
+                                Subtotal ({basket.length} items) :{" "}
+                                <span className="font-bold">
+                                    <Currency quantity={0} currency="BDT" />
+                                </span>
+                            </h2>
+
+                            <button
+                                className={`${
+                                    !session &&
+                                    "cursor-not-allowed border-gray-200 from-gray-300 to-gray-500 text-gray-300"
+                                } button mt-2`}
+                                disabled={!session}
+                                type="button"
+                            >
+                                {!session ? "Sign in to checkout" : "Proceed to checkout"}
+                            </button>
+                        </>
+                    )}
+                </div>
             </main>
         </div>
     );
