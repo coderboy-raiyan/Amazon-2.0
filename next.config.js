@@ -4,4 +4,10 @@ module.exports = {
     images: {
         domains: ["links.papareact.com", "fakestoreapi.com"],
     },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
 };

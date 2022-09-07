@@ -14,7 +14,11 @@ function Checkout() {
     const { data: session } = useSession();
     const total = useSelector(selectTotal);
 
-    const createCheckOutSession = () => {};
+    const createCheckOutSession = async () => {
+        const stripe = await stripePromise;
+
+        // Call the backend to create checkout Session
+    };
 
     return (
         <div className="bg-gray-100">
