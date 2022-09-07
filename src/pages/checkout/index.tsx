@@ -1,3 +1,4 @@
+import { loadStripe } from "@stripe/stripe-js";
 import { Header } from "components/molecules";
 import { CheckoutProduct } from "components/organisms";
 import { useSession } from "next-auth/react";
@@ -6,10 +7,14 @@ import Currency from "react-currency-formatter";
 import { useSelector } from "react-redux";
 import { selectTotal } from "redux/Reducers/basketSlice";
 
+const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`);
+
 function Checkout() {
     const { basket } = useSelector((state: any) => state.basket);
     const { data: session } = useSession();
     const total = useSelector(selectTotal);
+
+    const createCheckOutSession = () => {};
 
     return (
         <div className="bg-gray-100">
@@ -56,6 +61,8 @@ function Checkout() {
                                 </h2>
 
                                 <button
+                                    role="link"
+                                    onClick={createCheckOutSession}
                                     className={`${
                                         !session &&
                                         "cursor-not-allowed border-gray-200 from-gray-300 to-gray-500 text-gray-300"
