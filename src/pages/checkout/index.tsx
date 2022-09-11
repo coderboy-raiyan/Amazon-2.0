@@ -1,7 +1,9 @@
 import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 import { Header } from "components/molecules";
 import { CheckoutProduct } from "components/organisms";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import Image from "next/image";
 import Currency from "react-currency-formatter";
 import { useSelector } from "react-redux";
@@ -15,13 +17,32 @@ function Checkout() {
     const total = useSelector(selectTotal);
 
     const createCheckOutSession = async () => {
-        const stripe = await stripePromise;
-
         // Call the backend to create checkout Session
+        try {
+            const stripe = await stripePromise;
+            const { data: checkoutSession } = await axios.post("/api/create-checkout-session", {
+                items: basket,
+                email: session!.user?.email,
+            });
+
+            // Redirect user
+            await stripe?.redirectToCheckout({
+                sessionId: checkoutSession.id,
+            });
+
+            // if (result!.error) {
+            //     alert(result?.error.message);
+            // }
+        } catch (error: any) {
+            console.log(error.response.data);
+        }
     };
 
     return (
         <div className="bg-gray-100">
+            <Head>
+                <title>Amazon 2.0 - Cart</title>
+            </Head>
             <Header />
 
             <main className="mx-auto max-w-screen-2xl lg:flex">
