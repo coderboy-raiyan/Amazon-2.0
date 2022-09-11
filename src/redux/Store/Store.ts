@@ -17,12 +17,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
+const nonProductionMiddlewares = process.env.NODE_ENV !== "production" ? [logger] : [];
+
 const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat([thunk, logger]),
+        }).concat([thunk, ...nonProductionMiddlewares]),
     devTools: process.env.NODE_ENV !== "production",
 });
 
