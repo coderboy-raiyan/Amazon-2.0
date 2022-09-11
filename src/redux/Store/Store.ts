@@ -23,6 +23,7 @@ const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: false,
         }).concat([thunk, logger]),
+    devTools: process.env.NODE_ENV !== "production",
 });
 
 export const persistor = persistStore(store);
